@@ -6,6 +6,23 @@
 // NOTE: This approach follows a design pattern in which the comparative array is transversed in both directions.
 //       Binary Search Trees are an example of a "Tranvserse in Both Directions" design pattern.
 
+// The "comparison only" solution has a big O factor of O(n^2). This is because we are comparing every element to every other element.
+// The "comparison only" solution is not efficient enough to pass the time limit.
+// We can limit the number of comparisons by creating a "code" for each snowflake, which is the sum of the elements.
+// We can then compare the codes to determine if the snowflakes can be illiminated from the comparison.
+// This code will become the index of the "code" array. HOWEVER, the size of the "code" array will be too large to hold all possible codes.
+// We can limit the size of the "code" array by using the modulus operator to reduce its index.
+int code(int flake[]) {
+    return (flake[0] + flake[1] + flake[2] + flake[3] + flake[4] + flake[5]) % SIZE;
+}
+
+// Now we need a linked list to store the repeated codes, otherwise we will have collisions problems.
+typedef struct flake_node {
+    int flake[6];
+    struct flake_node *next;
+} flake_node;
+
+
 // Transverse "RIGHT" to determine match.
 // If match is found, return 1, otherwise return 0. (Boolean)
 int find_right(int flake1[], int flake2[], int start) {
@@ -47,7 +64,7 @@ int compare_flakes(int flake1[], int flake2[]) {
     return 0;
 }
 
-// i\Initial function to determine concept of unique snowflakes
+// Initial function to determine concept of unique snowflakes
 void find_identical(int flakes[][6], int n) {
     int i, j;
     for (i = 0; i < n; i++) {

@@ -54,3 +54,4 @@ dkms.conf
 
 # VS Code Workspace
 *.code-workspace
+*copy.*

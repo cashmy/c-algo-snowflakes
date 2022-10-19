@@ -12,6 +12,9 @@
 // We can then compare the codes to determine if the snowflakes can be illiminated from the comparison.
 // This code will become the index of the "code" array. HOWEVER, the size of the "code" array will be too large to hold all possible codes.
 // We can limit the size of the "code" array by using the modulus operator to reduce its index.
+// In effect we are creating a HASH TABLE.
+
+// Hash Function - This function will return a unique index for each snowflake.
 int code(int flake[])
 {
     return (flake[0] + flake[1] + flake[2] + flake[3] + flake[4] + flake[5]) % SIZE;
